@@ -75,13 +75,13 @@ export const LoanProvider = ({ children }: LoanProviderProps) => {
         setLoanRequests(JSON.parse(savedRequests));
       } else {
         // Add some demo data if none exists
-        const demoRequests = [
+        const demoRequests: LoanRequest[] = [
           {
             id: 'req-001',
             borrower: '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
             amount: '0.5',
             purpose: 'Business expansion',
-            status: 'Pending' as const,
+            status: 'Pending',
             timestamp: Date.now() - 3600000
           },
           {
@@ -89,7 +89,7 @@ export const LoanProvider = ({ children }: LoanProviderProps) => {
             borrower: '0x70997970C51812dc3A010C7d01b50e0d17dc79C8',
             amount: '1.2',
             purpose: 'Home renovation',
-            status: 'Pending' as const,
+            status: 'Pending',
             timestamp: Date.now() - 7200000
           }
         ];
@@ -97,7 +97,7 @@ export const LoanProvider = ({ children }: LoanProviderProps) => {
         setLoanRequests(demoRequests);
         localStorage.setItem('unbnked_loan_requests', JSON.stringify(demoRequests));
         
-        const demoLoans = [
+        const demoLoans: Loan[] = [
           {
             id: 'loan-001',
             lender: '0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC',
@@ -105,7 +105,7 @@ export const LoanProvider = ({ children }: LoanProviderProps) => {
             amount: '2.0',
             interestRate: 5,
             duration: 30,
-            status: 'Open' as const,
+            status: 'Open',
             timestamp: Date.now() - 86400000
           },
           {
@@ -115,7 +115,7 @@ export const LoanProvider = ({ children }: LoanProviderProps) => {
             amount: '1.5',
             interestRate: 7,
             duration: 60,
-            status: 'Active' as const,
+            status: 'Active',
             timestamp: Date.now() - 172800000
           }
         ];
@@ -239,7 +239,7 @@ export const LoanProvider = ({ children }: LoanProviderProps) => {
           return {
             ...loan,
             borrower: account,
-            status: 'Active'
+            status: 'Active' as const
           };
         }
         return loan;
@@ -285,7 +285,7 @@ export const LoanProvider = ({ children }: LoanProviderProps) => {
         if (req.id === requestId) {
           return {
             ...req,
-            status: 'Fulfilled'
+            status: 'Fulfilled' as const
           };
         }
         return req;
@@ -355,7 +355,7 @@ export const LoanProvider = ({ children }: LoanProviderProps) => {
         if (loan.id === loanId) {
           return {
             ...loan,
-            status: 'Completed'
+            status: 'Completed' as const
           };
         }
         return loan;
@@ -448,7 +448,7 @@ export const LoanProvider = ({ children }: LoanProviderProps) => {
         if (req.id === requestId) {
           return {
             ...req,
-            status: 'Cancelled'
+            status: 'Cancelled' as const
           };
         }
         return req;
